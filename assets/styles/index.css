@@ -31,7 +31,7 @@ p a {
   text-decoration: underline;
 }
 
-#page {
+#app {
   display: grid;
   place-items: center;
   min-height: 100%;
@@ -43,10 +43,12 @@ p a {
       hsl(200, 75%, 95%));
 }
 
-@media screen and (max-width: 425px) {
-  #page {
+@media screen and (max-width: 2000px) {
+  #app {
     align-items: start;
     padding: 0;
     padding-bottom: 64px;
   }
 }
+
+

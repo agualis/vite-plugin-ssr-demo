@@ -70,7 +70,7 @@ const modeLinks = [
 <style>
 .panel {
   width: 100%;
-  max-width: 700px;
+  max-width: 70%;
   padding: 32px;
   border-radius: 20px;
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
