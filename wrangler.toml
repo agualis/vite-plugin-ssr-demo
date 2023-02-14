@@ -1,6 +1,6 @@
 main="./worker/index.js"
 name = "ssr-spa"
-compatibility_date = "2021-09-29"
+compatibility_date = "2023-01-01"
 workers_dev = true
 node_compat = true
 
