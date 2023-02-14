@@ -20,7 +20,7 @@ const modeLinks = [
   },
   {
     url: "/characters",
-    name: "Characters"
+    name: "Vue-query"
   },
 ];
 
