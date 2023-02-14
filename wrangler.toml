@@ -1,5 +1,5 @@
 main="./worker/index.js"
-name = "vite-plugin-ssr_worker-example"
+name = "ssr-spa"
 compatibility_date = "2021-09-29"
 workers_dev = true
 node_compat = true
