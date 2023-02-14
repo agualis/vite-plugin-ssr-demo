@@ -3,7 +3,7 @@ import { inject, computed } from "vue";
 import Link from './Link.vue';
 
 import { PageContextBuiltIn } from "vite-plugin-ssr";
-import { PageContext } from "/pages/_default/types";
+import { PageContext } from "/renderer/types";
 const pageContext = inject("pageContext") as PageContextBuiltIn & PageContext;
 
 const logoUrl = import.meta.env.BASE_URL + "logo.svg";
@@ -20,11 +20,6 @@ const modeLinks = [
   },
 ];
 
-const helpLinkText = computed(_ => {
-  const home = pageContext.urlParsed.pathname === "/";
-  if (home) return "Which mode should I use for my project?";
-  return "Should I use this mode for my project?";
-});
 </script>
 
 <template>
@@ -41,9 +36,7 @@ const helpLinkText = computed(_ => {
     </div>
     <div class="content">
       <slot></slot>
-      <p v-if="!pageContext.is404 && pageContext.urlParsed.pathname !== `/help`">
-        <a href="/help">{{ helpLinkText }}</a>
-      </p>
+
     </div>
     <div class="status">
       <div class="external">
