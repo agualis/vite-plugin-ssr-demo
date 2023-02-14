@@ -13,5 +13,9 @@
     "vite-plugin-ssr": "0.4.81",
     "vue": "^3.2.33",
     "wrangler": "^2.0.21"
+  },
+  "devDependencies": {
+    "@tanstack/vue-query": "^4.24.6",
+    "ohmyfetch": "^0.4.21"
   }
 }

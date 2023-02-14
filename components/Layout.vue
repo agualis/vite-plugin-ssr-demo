@@ -18,6 +18,10 @@ const modeLinks = [
     url: "/spa",
     name: "SPA"
   },
+  {
+    url: "/characters",
+    name: "Characters"
+  },
 ];
 
 </script>

@@ -2,6 +2,7 @@ import { PageContextBuiltIn } from "vite-plugin-ssr";
 import { PageContext } from "./types";
 import { createSSRApp, createApp, h } from "vue";
 import LayoutComponent from "/components/Layout.vue";
+import { VueQueryPlugin } from '@tanstack/vue-query'
 
 export function createPageApp(pageContext: PageContextBuiltIn & PageContext, clientOnly: boolean) {
   const { Page: PageComponent, pageProps } = pageContext;
@@ -14,7 +15,9 @@ export function createPageApp(pageContext: PageContextBuiltIn & PageContext, cli
     }
   };
 
-  const page = createAppFunc(AppComponent);
-  page.provide("pageContext", pageContext);
-  return page;
+  const app = createAppFunc(AppComponent);
+  app.provide("pageContext", pageContext);
+  app.use(VueQueryPlugin)
+
+  return app;
 }
