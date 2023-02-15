@@ -1,1 +1,1 @@
-export default '/characters/@characterId'
+export default '/characters/@characterId';

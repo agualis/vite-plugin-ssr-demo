@@ -1,9 +1,9 @@
-import { getCharacters, initialPage } from './characterData'
+import { getCharacters, initialPage } from './characterData';
 
-export { onBeforeRender }
+export { onBeforeRender };
 
 async function onBeforeRender() {
-  const initialData = await getCharacters(initialPage)
+  const initialData = await getCharacters(initialPage);
 
   return {
     pageContext: {
@@ -11,5 +11,5 @@ async function onBeforeRender() {
         initialData,
       },
     },
-  }
+  };
 }

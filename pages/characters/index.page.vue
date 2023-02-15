@@ -4,13 +4,13 @@
     <button :disabled="isFetching" @click="refetch()">
       {{ isFetching ? 'Refetching...' : 'Refetch' }}
     </button>
-    <div v-if="isLoading">
-      loading...
-    </div>
+    <div v-if="isLoading">loading...</div>
     <div v-else>
       <ul>
         <li v-for="char in characters" :key="char.id">
-          <a :href="`/characters/${char.id}`">{{ char.name }} - {{ char.status }}</a>
+          <a :href="`/characters/${char.id}`"
+            >{{ char.name }} - {{ char.status }}</a
+          >
         </li>
       </ul>
     </div>
@@ -21,15 +21,15 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useInfiniteQuery } from '@tanstack/vue-query'
-import { getCharacters, initialPage } from './characterData'
-import type { APIResponse, Character } from './types'
+import { computed } from 'vue';
+import { useInfiniteQuery } from '@tanstack/vue-query';
+import { getCharacters, initialPage } from './characterData';
+import type { APIResponse, Character } from './types';
 
 // initialData prop comes from pageProps in index.page.server.ts
 const props = defineProps<{
-  initialData: APIResponse
-}>()
+  initialData: APIResponse;
+}>();
 
 const {
   data,
@@ -39,25 +39,33 @@ const {
   hasNextPage,
   fetchNextPage,
   isFetchingNextPage,
-} = useInfiniteQuery(['characters'], ({ pageParam }) => getCharacters(pageParam), {
-  initialData: {
-    pages: [props.initialData], // set our initial data from pageProps
-    pageParams: [initialPage],
-  },
-  getNextPageParam: (lastPage) => {
-    const nextUrl = lastPage.info.next
-    if (nextUrl) {
-      // Return next page number
-      return Number(nextUrl.charAt(nextUrl.length - 1))
-    }
-    // Return false means no next page
-    return false
-  },
-})
+} = useInfiniteQuery(
+  ['characters'],
+  ({ pageParam }) => getCharacters(pageParam),
+  {
+    initialData: {
+      pages: [props.initialData], // set our initial data from pageProps
+      pageParams: [initialPage],
+    },
+    getNextPageParam: lastPage => {
+      const nextUrl = lastPage.info.next;
+      if (nextUrl) {
+        // Return next page number
+        return Number(nextUrl.charAt(nextUrl.length - 1));
+      }
+      // Return false means no next page
+      return false;
+    },
+  }
+);
 
 const characters = computed<Character[]>(() => {
-  return data.value!.pages.flat().map((char) => {
-    return char.results
-  }).flat()
-})
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  return data
+    .value!.pages.flat()
+    .map(char => {
+      return char.results;
+    })
+    .flat();
+});
 </script>
